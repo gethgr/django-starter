@@ -1,0 +1,18 @@
+[project]
+name = "django-starter"
+version = "0.1.0"
+description = "This is a django starter base template."
+authors = [
+    {name = "geth",email = "altemode@mail.com"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
