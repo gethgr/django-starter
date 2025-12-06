@@ -10,10 +10,34 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 
 dependencies = [
-    "django (>=6.0,<7.0)"
+    "django (>=6.0,<7.0)",
+    "django-environ (>=0.12.0,<0.13.0)",
+    "whitenoise (>=6.11.0,<7.0.0)"
 ]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "black (>=25.11.0,<26.0.0)",
+    "isort (>=7.0.0,<8.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "pytest (>=9.0.1,<10.0.0)",
+    "pytest-django (>=4.11.1,<5.0.0)",
+    "mypy (>=1.19.0,<2.0.0)",
+    "ipython (>=9.8.0,<10.0.0)",
+]
+
+[tool.black]
+line-length = 120
+skip-string-normalization = true
+
+[tool.isort]
+profile = "black"
+line_length = 120
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+combine_as_imports = true
