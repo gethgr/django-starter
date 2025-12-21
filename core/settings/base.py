@@ -1,28 +1,30 @@
+import os
 from pathlib import Path
 
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-# Setup django-environ
+# Load environment variables από .env
 env = environ.Env(DEBUG=(bool, True))
 
+# Read .env file depending on the environment
+if os.environ['DJANGO_SETTINGS_MODULE'] == 'core.settings.dev':
+    environ.Env.read_env(BASE_DIR / '.env.dev')
+else:
+    environ.Env.read_env(BASE_DIR / '.env.prod')
 
-# Read .env file
-environ.Env.read_env(BASE_DIR / '.env')
-
-# Basic settings
+# Basic secret key and debug default
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-
+DEBUG = env.bool("DEBUG", default=True)
 
 # Application definition
 INSTALLED_APPS = [
     # main app
     'core',
+    # django default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
