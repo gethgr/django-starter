@@ -1,6 +1,6 @@
 [project]
 name = "django-starter"
-version = "0.1.0"
+version = "0.2.0"
 description = "This is a django starter base template."
 authors = [
     {name = "geth",email = "altemode@mail.com"}
@@ -12,7 +12,8 @@ requires-python = ">=3.12,<3.13"
 dependencies = [
     "django (>=6.0,<7.0)",
     "django-environ (>=0.12.0,<0.13.0)",
-    "whitenoise (>=6.11.0,<7.0.0)"
+    "whitenoise (>=6.11.0,<7.0.0)",
+    "psycopg[binary] (>=3.3.2,<4.0.0)"
 ]
 
 [build-system]

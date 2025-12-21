@@ -14,6 +14,9 @@ show:
 run:
 	poetry run python manage.py runserver
 
+rundev:
+	poetry run python manage.py runserver --settings=core.settings.dev
+
 migrate:
 	poetry run python manage.py migrate
 

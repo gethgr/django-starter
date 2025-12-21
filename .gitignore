@@ -3,8 +3,17 @@ __pycache__/
 *.py[cod]
 *.so
 
-# Django
+# Ignore compiled Python files
 *.pyc
 __pycache__/
+
+# Ignore SQLite database
 db.sqlite3
-.env
+
+# Ignore environment files
+.env*
+!/.env.example
+
+# Ignore logs
+logs/
+*.log
