@@ -8,20 +8,20 @@ lint:
 tests:
 	poetry run pytest || true
 
-show:
-	poetry run python manage.py showmigrations
-
-run:
-	poetry run python manage.py runserver
-
 rundev:
-	poetry run python manage.py runserver --settings=core.settings.dev
+	poetry run python manage.py runserver 8001 --settings=core.settings.dev
+
+showmigrations:
+	poetry run python manage.py showmigrations --settings=core.settings.dev
+
+makemigrations:
+	poetry run python manage.py makemigrations --settings=core.settings.dev
 
 migrate:
-	poetry run python manage.py migrate
+	poetry run python manage.py migrate --settings=core.settings.dev
 
-coverage:
-	poetry run pytest --cov=core tests/
+createsuperuser:
+	poetry run python manage.py createsuperuser --settings=core.settings.dev
 
 typecheck:
 	poetry run mypy .
@@ -29,18 +29,21 @@ typecheck:
 shell:
 	poetry run python manage.py shell
 
-
 check: format lint tests
+
+docker-dev:
+	docker compose -f docker/dev/docker-compose.yml up --build
 
 
 help:
 	@echo "Available commands:"
-	@echo "  make format       - Run black and isort"
-	@echo "  make lint         - Run flake8"
-	@echo "  make test         - Run pytest"
-	@echo "  make show		   - Show migrations"
-	@echo "  make run          - Run Django server"
-	@echo "  make migrate      - Apply migrations"
-	@echo "  make coverage     - Run tests with coverage"
-	@echo "  make typecheck    - Run mypy type checks"
-	@echo "  make shell        - Open Django shell"
+	@echo "  make format       		- Run black and isort"
+	@echo "  make lint         		- Run flake8"
+	@echo "  make test         		- Run pytest"
+	@echo "  make rundev	   		- Runserver"
+	@echo "  make showmigrations	- Show migrations"
+	@echo "  make makemigrations	- Make migrations"
+	@echo "  make migrate      		- Apply migrations"
+	@echo "  make createsuperuser	- Create super user"
+	@echo "  make typecheck    		- Run mypy type checks"
+	@echo "  make shell       		- Open Django shell"
