@@ -1,0 +1,30 @@
+services:
+  web:
+    build:
+      context: ../..
+      dockerfile: docker/prod/Dockerfile
+    container_name: django_prod_web
+    env_file:
+      - ../../.env.prod
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - staticfiles_volume:/app/staticfiles
+      - media_volume:/app/media
+
+  db:
+    image: postgres:16-alpine
+    container_name: django_prod_db
+    env_file:
+      - ../../.env.prod
+    volumes:
+      - postgres_prod_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_prod_data:
+  staticfiles_volume:
+  media_volume:

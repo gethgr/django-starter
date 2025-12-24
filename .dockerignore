@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Git
+.git/
+.gitignore
+
+# Frontend
+node_modules/
+
+# Django
+staticfiles/
+media/
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/

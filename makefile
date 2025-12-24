@@ -8,20 +8,20 @@ lint:
 pytest:
 	poetry run pytest || true
 
-show:
-	poetry run python manage.py showmigrations
-
-run:
-	poetry run python manage.py runserver
-
 rundev:
-	poetry run python manage.py runserver --settings=core.settings.dev
+	poetry run python manage.py runserver 8001 --settings=core.settings.dev
+
+showmigrations:
+	poetry run python manage.py showmigrations --settings=core.settings.dev
+
+makemigrations:
+	poetry run python manage.py makemigrations --settings=core.settings.dev
 
 migrate:
-	poetry run python manage.py migrate
+	poetry run python manage.py migrate --settings=core.settings.dev
 
-coverage:
-	poetry run pytest --cov=core tests/
+createsuperuser:
+	poetry run python manage.py createsuperuser --settings=core.settings.dev
 
 typecheck:
 	poetry run mypy .
@@ -30,6 +30,12 @@ shell:
 	poetry run python manage.py shell
 
 check: format lint pytest
+
+docker-dev:
+	docker compose -f docker/dev/docker-compose.yml up --build -d
+
+docker-exec-db:
+	docker exec -it django_dev_db psql -U myuser -d mydatabase
 
 
 help:
